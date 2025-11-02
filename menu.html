@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fonda Doña Elpidia — Comida Mexicana</title>
+<meta name="description" content="Fonda Doña Elpidia - Desayunos, comidas y cenas. Pide por WhatsApp o llama al 33 1954 9166" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#c62828;
+    --verde:#2e7d32;
+    --amarillo:#f9a825;
+    --accent:#f57c00;
+    --bg:#fff8f0;
+    --muted:#6b6b6b;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:"Inter",system-ui,Arial;
+    background: linear-gradient(180deg,var(--bg),#fff);
+    color:#222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:inherit}
+
+  /* header */
+  header{
+    background:linear-gradient(90deg,var(--rojo),var(--amarillo),var(--verde));
+    color:white;padding:1.6rem 1rem;border-bottom:6px solid rgba(0,0,0,0.06);
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
+  header h1{font-family:'Fredoka One',cursive;margin:0;font-size:2rem;letter-spacing:1px}
+  header p{margin:.4rem 0 0;font-weight:600;opacity:.95}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.8rem}
+  .contact-pill{background:rgba(255,255,255,0.12);padding:.4rem .7rem;border-radius:20px;font-weight:700}
+  .contact-pill a{color:white;text-decoration:none}
+
+  /* papel picado decorative */
+  .papel{height:36px;overflow:hidden;margin-top:.8rem}
+  .papel svg{width:100%;height:100%;display:block}
+
+  /* hero */
+  .hero{background:linear-gradient(0deg, rgba(0,0,0,0.03), transparent);padding:1.8rem 0}
+  .hero-inner{display:grid;grid-template-columns:1fr 460px;gap:1.2rem;align-items:center}
+  @media (max-width:980px){ .hero-inner{grid-template-columns:1fr} }
+
+  .hero-left h2{margin:0;font-size:2rem;color:var(--rojo)}
+  .hero-left p{margin:.6rem 0;color:var(--muted)}
+  .hero-cta{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+  .btn{padding:.8rem 1.1rem;border-radius:10px;border:none;cursor:pointer;font-weight:800}
+  .btn-primary{background:var(--verde);color:white}
+  .btn-wsp{background:#25d366;color:white;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;border-radius:10px;padding:.75rem 1rem;font-weight:800}
+  .btn-secondary{background:rgba(0,0,0,0.06)}
+
+  .hero-right img{width:100%;height:320px;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,0.08)}
+
+  /* main grid */
+  main{max-width:1200px;margin:1.6rem auto;padding:0 1rem;display:grid;grid-template-columns:1fr 360px;gap:1.2rem}
+  @media (max-width:980px){ main{grid-template-columns:1fr} }
+
+  /* left column: content */
+  .section{background:var(--card);padding:1.2rem;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,0.04)}
+  .section h2{margin:0 0 .6rem;color:var(--rojo)}
+  .subtitle{margin:0 0 1rem;color:var(--muted)}
+
+  /* tabs / filters */
+  .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .tab{padding:.5rem .8rem;border-radius:999px;border:2px solid rgba(0,0,0,0.04);background:#fff;font-weight:700;cursor:pointer}
+  .tab.active{background:linear-gradient(90deg,#fff7e6,#fff);border-color:var(--accent);box-shadow:0 8px 22px rgba(245,124,0,0.06)}
+
+  /* products grid */
+  .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+  @media (max-width:700px){ .product-grid{grid-template-columns:1fr} }
+
+  .product{
+    display:flex;gap:1rem;background:#fffaf0;border-radius:12px;padding:0.9rem;border:3px solid #fff3d6;align-items:center;
+    transition:transform .14s,box-shadow .14s;
+  }
+  .product:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.06)}
+  .product img{width:140px;height:110px;border-radius:10px;object-fit:cover;flex-shrink:0}
+  .prod-info h3{margin:0;font-size:1.05rem;color:var(--verde)}
+  .prod-info p{margin:.35rem 0;color:var(--muted);font-size:.92rem}
+  .prod-actions{margin-left:auto;text-align:right;display:flex;flex-direction:column;gap:.5rem}
+  .price{font-weight:900;color:var(--rojo)}
+  .add-btn{background:linear-gradient(90deg,#25d366,#1da851);border:none;color:white;padding:.5rem .8rem;border-radius:9px;cursor:pointer;font-weight:800}
+
+  /* gallery */
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  @media (max-width:700px){ .gallery-grid{grid-template-columns:repeat(2,1fr)} }
+  .gallery-grid img{width:100%;height:140px;object-fit:cover;border-radius:8px;cursor:pointer}
+
+  /* story/opinions */
+  .opinions .op{border-left:4px solid var(--accent);padding:.8rem;margin-bottom:.6rem;background:#fffdf8;border-radius:8px}
+
+  /* right column: cart */
+  .cart{position:sticky;top:20px;background:linear-gradient(180deg,#fff,#fffaf0);padding:1rem;border-radius:12px;border:4px solid #fff3d6;box-shadow:0 12px 28px rgba(0,0,0,0.05)}
+  .cart h3{margin:0 0 .6rem;color:var(--rojo)}
+  .cart .empty{color:var(--muted);padding:1rem;text-align:center}
+  .cart .list{max-height:52vh;overflow:auto;padding-right:.4rem}
+  .cart-item{display:flex;gap:.6rem;align-items:center;padding:.6rem 0;border-bottom:1px dashed #eee}
+  .cart-item img{width:64px;height:48px;border-radius:8px;object-fit:cover}
+  .cart-item .meta{flex:1}
+  .qty{display:inline-flex;border:1px solid #eee;border-radius:8px;overflow:hidden}
+  .qty button{background:#fff;border:none;padding:.35rem .6rem;cursor:pointer;font-weight:700}
+  .totals{margin-top:.8rem;border-top:1px solid #eee;padding-top:.8rem}
+  .line{display:flex;justify-content:space-between;margin:6px 0;font-weight:700}
+
+  .checkout{display:flex;gap:.6rem;margin-top:.8rem}
+  .checkout .btn{flex:1}
+  .btn-send{background:#25d366;color:white;border:none;border-radius:10px;padding:.8rem;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(37,211,102,0.12)}
+  .btn-clear{background:#f5f5f5;border:1px solid #eee;border-radius:10px;padding:.65rem;font-weight:800;cursor:pointer}
+
+  /* footer */
+  footer{margin-top:1.2rem;padding:1.2rem 1rem;background:linear-gradient(90deg,var(--verde),var(--rojo));color:white;text-align:center;border-radius:8px}
+  footer p{margin:.2rem 0}
+
+  /* modal for checkout form */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:80;padding:1rem}
+  .modal.open{display:flex}
+  .modal .panel{width:100%;max-width:720px;background:white;border-radius:12px;padding:1rem}
+  .form-row{display:flex;gap:.6rem;margin-bottom:.6rem}
+  .form-row .field{flex:1}
+  .field label{display:block;font-weight:700;margin-bottom:.25rem}
+  .field input, .field textarea, .field select{width:100%;padding:.6rem;border-radius:8px;border:1px solid #eee}
+  .close-x{float:right;background:transparent;border:none;font-size:1.2rem;cursor:pointer}
+
+  .small{font-size:.9rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>🇲🇽 Fonda Doña Elpidia</h1>
+    <p>Comida casera: Desayuno · Comida · Cena — Laurel 591, Col. El Campesino, Tlaquepaque, Jalisco</p>
+    <div class="topbar" aria-hidden="false">
+      <div class="contact-pill">📞 <a href="tel:+523319549166">33 1954 9166</a></div>
+      <div style="display:flex;gap:.6rem">
+        <a class="btn-wsp" id="whatsapp-top" href="#" target="_blank">📱 Pedir por WhatsApp</a>
+        <button class="btn btn-secondary" onclick="openCheckout()">🧺 Ver pedido</button>
+      </div>
+    </div>
+  </div>
+  <div class="papel" aria-hidden="true">
+    <!-- simple papel picado -->
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#e53935"/><stop offset="0.5" stop-color="#fdd835"/><stop offset="1" stop-color="#43a047"/></linearGradient></defs>
+      <rect width="1200" height="40" fill="url(#g)"/>
+      <g fill="#fff" opacity="0.12">
+        <circle cx="60" cy="20" r="12"/><circle cx="180" cy="20" r="12"/><circle cx="300" cy="20" r="12"/>
+        <circle cx="420" cy="20" r="12"/><circle cx="540" cy="20" r="12"/><circle cx="660" cy="20" r="12"/>
+        <circle cx="780" cy="20" r="12"/><circle cx="900" cy="20" r="12"/><circle cx="1020" cy="20" r="12"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-left">
+      <h2>El auténtico sabor de la casa</h2>
+      <p>Platillos tradicionales preparados con ingredientes frescos y recetas de la familia. Pide por WhatsApp o llama para encargos.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="scrollToSection('menu')">Ver Menú</button>
+        <a class="btn-wsp" id="hero-whatsapp" href="#" target="_blank">📱 Pedir por WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" alt="Comida mexicana">
+    </div>
+  </div>
+</section>
+
+<main>
+  <!-- LEFT: content -->
+  <div>
+    <!-- MENU -->
+    <section id="menu" class="section">
+      <h2>Menú completo</h2>
+      <p class="subtitle">Selecciona Desayuno, Comida o Cena. Añade al carrito y envía tu pedido por WhatsApp.</p>
+
+      <div class="tabs" role="tablist" aria-label="Categorías">
+        <div class="tab active" data-cat="todos" role="button">Todos</div>
+        <div class="tab" data-cat="desayuno" role="button">Desayuno</div>
+        <div class="tab" data-cat="comida" role="button">Comida</div>
+        <div class="tab" data-cat="cena" role="button">Cena</div>
+      </div>
+
+      <div id="product-grid" class="product-grid" aria-live="polite">
+        <!-- productos generados por JS -->
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="galeria" class="section" style="margin-top:1rem">
+      <h2>Galería</h2>
+      <p class="subtitle">Algunas fotos de nuestros platillos y del local.</p>
+      <div class="gallery-grid" id="gallery">
+        <!-- imágenes generadas por JS -->
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section id="historia" class="section" style="margin-top:1rem">
+      <h2>Nuestra historia</h2>
+      <p class="small">Fonda Doña Elpidia nació en el corazón de Tlaquepaque con la misión de preservar recetas familiares tradicionales. Cada plato se prepara con amor, ingredientes frescos y sazón casera.</p>
+      <p class="small">Horario: Lunes a Domingo 8:00 AM - 10:00 PM</p>
+    </section>
+
+    <!-- OPINIONES -->
+    <section id="opiniones" class="section" style="margin-top:1rem">
+      <h2>Opiniones de clientes</h2>
+      <div class="opinions">
+        <div class="op"><strong>María G.</strong> — "Deliciosos chilaquiles, como los de mi abuela. Servicio rápido."</div>
+        <div class="op"><strong>Carlos R.</strong> — "Excelente pozole, recomendable para reuniones familiares."</div>
+        <div class="op"><strong>Lucía P.</strong> — "Buen precio y raciones generosas. ¡Vuelvo pronto!"</div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section" style="margin-top:1rem">
+      <h2>Contacto</h2>
+      <p class="small">Dirección: Laurel 591, Col. El Campesino, Tlaquepaque, Jalisco</p>
+      <p class="small">Tel: <a href="tel:+523319549166">33 1954 9166</a></p>
+      <p class="small">¿Quieres encargos grandes o eventos? Llama o envía un mensaje por WhatsApp y te respondemos rápido.</p>
+      <form id="contact-form" onsubmit="submitContact(event)" style="margin-top:.6rem">
+        <div class="form-row">
+          <div class="field"><label>Nombre</label><input id="contact-name" required></div>
+          <div class="field"><label>Teléfono</label><input id="contact-phone" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field" style="flex:1"><label>Mensaje</label><textarea id="contact-msg" rows="3" required></textarea></div>
+        </div>
+        <div style="display:flex;gap:.6rem">
+          <button class="btn btn-primary" type="submit">Enviar mensaje (WhatsApp)</button>
+          <button class="btn btn-secondary" type="button" onclick="clearContact()">Limpiar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- RIGHT: cart -->
+  <aside class="cart" aria-labelledby="cart-title">
+    <h3 id="cart-title">Tu pedido</h3>
+    <div class="small" id="cart-note">Guardado localmente en tu navegador</div>
+    <div class="list" id="cart-list">
+      <div class="empty">No hay productos. Agrega algo delicioso 🍽️</div>
+    </div>
+
+    <div class="totals" id="cart-totals" hidden>
+      <div class="line"><span>Subtotal</span><span id="subtotal">$0</span></div>
+      <div class="line"><span>IVA (0%)</span><span id="iva">$0</span></div>
+      <div class="line" style="font-size:1.05rem;"><strong>Total</strong><strong id="total">$0</strong></div>
+    </div>
+
+    <div class="checkout">
+      <button class="btn btn-clear" onclick="clearCart()">Vaciar</button>
+      <button class="btn btn-send" onclick="openCheckout()">Enviar</button>
+    </div>
+
+    <div style="margin-top:1rem;font-size:.9rem;color:var(--muted)">
+      <strong>Tel: </strong><a href="tel:+523319549166">33 1954 9166</a><br>
+      <strong>Dirección: </strong>Laurel 591, Col. El Campesino, Tlaquepaque, Jalisco
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2025 Fonda Doña Elpidia | Todos los derechos reservados. Sitio creado para uso comercial.</p>
+  </div>
+</footer>
+
+<!-- MODAL CHECKOUT -->
+<div id="modal-checkout" class="modal" aria-hidden="true">
+  <div class="panel" role="dialog" aria-modal="true">
+    <button class="close-x" onclick="closeCheckout()">✕</button>
+    <h3>Enviar pedido</h3>
+    <p class="small">Revisa tu pedido y completa tus datos antes de enviar por WhatsApp.</p>
+
+    <div id="checkout-items" style="margin-top:.8rem"></div>
+
+    <div class="totals" style="margin-top:.8rem">
+      <div class="line"><span>Subtotal</span><span id="chk-subtotal">$0</span></div>
+      <div class="line"><span>IVA (0%)</span><span id="chk-iva">$0</span></div>
+      <div class="line" style="font-size:1.05rem;"><strong>Total</strong><strong id="chk-total">$0</strong></div>
+    </div>
+
+    <form id="checkout-form" onsubmit="submitOrder(event)" style="margin-top:.8rem">
+      <div class="form-row">
+        <div class="field"><label>Nombre</label><input id="cust-name" required></div>
+        <div class="field"><label>Teléfono</label><input id="cust-phone" required></div>
+      </div>
+      <div class="form-row">
+        <div class="field" style="flex:1"><label>Dirección de entrega (si aplica)</label><input id="cust-address"></div>
+      </div>
+      <div class="form-row">
+        <div class="field" style="flex:1"><label>Notas / instrucciones</label><textarea id="cust-notes" rows="2"></textarea></div>
+      </div>
+
+      <div style="display:flex;gap:.6rem;margin-top:.6rem">
+        <button class="btn btn-send" type="submit">Enviar por WhatsApp</button>
+        <button class="btn btn-clear" type="button" onclick="saveOrderDraft()">Guardar borrador</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div id="img-modal" class="modal" aria-hidden="true" onclick="closeImgModal()">
+  <div class="panel" style="max-width:920px;display:flex;gap:0" onclick="event.stopPropagation()">
+    <img id="img-modal-img" src="" alt="" style="width:60%;height:100%;object-fit:cover;border-radius:8px 0 0 8px">
+    <div style="padding:1rem">
+      <h3 id="img-modal-title"></h3>
+      <p id="img-modal-desc" class="small"></p>
+      <div style="margin-top:1rem">
+        <button class="btn btn-primary" onclick="closeImgModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================
+   Config / Datos de negocio
+   ============================ */
+const WHATSAPP_NUMBER = '523319549166'; // +52 33 1954 9166
+const BUSINESS_NAME = 'Fonda Doña Elpidia';
+const STORAGE_KEY = 'fonda_elpidia_cart_v2';
+
+/* ============================
+   Productos (puedes editarlos)
+   Cada producto: id, name, desc, price, category, image
+   Imágenes de Unsplash / Pixabay / Wikimedia (libres para uso)
+   ============================ */
+const PRODUCTS = [
+  // Desayuno
+  {id:'d1', name:'Huevos rancheros', desc:'Huevos estrellados, salsa ranchera, frijoles, totopos', price:80, category:'desayuno', image:'https://images.unsplash.com/photo-1604909053331-2c9c5e1a6fbd?auto=format&fit=crop&w=1200&q=80'},
+  {id:'d2', name:'Chilaquiles (rojo/verde)', desc:'Totopos bañados en salsa, crema, queso y pollo opcional', price:85, category:'desayuno', image:'https://images.unsplash.com/photo-1604908810910-3a3b6ca1b8f8?auto=format&fit=crop&w=1200&q=80'},
+  {id:'d3', name:'Molletes', desc:'Bolillo con frijoles, queso gratinado y pico de gallo', price:75, category:'desayuno', image:'https://images.unsplash.com/photo-1605477936528-1ea5f0e2f1cc?auto=format&fit=crop&w=1200&q=80'},
+  {id:'d4', name:'Café de olla + pan dulce', desc:'Café tradicional con canela y piloncillo más pan dulce', price:50, category:'desayuno', image:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'},
+
+  // Comida
+  {id:'c1', name:'Pollo en mole poblano', desc:'Pieza de pollo con mole poblano casero y arroz', price:95, category:'comida', image:'https://images.unsplash.com/photo-1601050690688-7f9f39b2a2b0?auto=format&fit=crop&w=1200&q=80'},
+  {id:'c2', name:'Enchiladas suizas', desc:'Enchiladas cremosas con queso gratinado', price:90, category:'comida', image:'https://images.unsplash.com/photo-1622747982419-2a2b9a3f1a4d?auto=format&fit=crop&w=1200&q=80'},
+  {id:'c3', name:'Pozole rojo', desc:'Tazón de pozole con lechuga, rábanos y orégano', price:110, category:'comida', image:'https://images.unsplash.com/photo-1576402187879-0c9e393a8df1?auto=format&fit=crop&w=1200&q=80'},
+  {id:'c4', name:'Bistec a la mexicana', desc:'Bistec con jitomate, cebolla y chile, arroz y frijoles', price:95, category:'comida', image:'https://images.unsplash.com/photo-1604908177522-86ca9f9d6b62?auto=format&fit=crop&w=1200&q=80'},
+  {id:'c5', name:'Sopa + guisado + bebida', desc:'Comida corrida tradicional, porción generosa', price:115, category:'comida', image:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80'},
+
+  // Cena
+  {id:'e1', name:'Tacos al pastor (5 pz)', desc:'Tacos con piña y salsa especial', price:95, category:'cena', image:'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1200&q=80'},
+  {id:'e2', name:'Tamales surtidos (2 pz)', desc:'Tamales de elote, rajas o mole', price:70, category:'cena', image:'https://images.unsplash.com/photo-1601050690570-011a7e9a6f1c?auto=format&fit=crop&w=1200&q=80'},
+  {id:'e3', name:'Torta ahogada', desc:'Torta estilo Guadalajara, bañada en salsa', price:90, category:'cena', image:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80'},
+  {id:'e4', name:'Tacos dorados (4 pz)', desc:'Tacos dorados rellenos con papa o pollo', price:80, category:'cena', image:'https://images.unsplash.com/photo-1604908177421-cc8f6d1f2f2d?auto=format&fit=crop&w=1200&q=80'},
+
+  // Extras/populares
+  {id:'x1', name:'Guacamole + totopos', desc:'Guacamole casero con totopos', price:65, category:'comida', image:'https://images.unsplash.com/photo-1617191518800-57f4e1dd8c3e?auto=format&fit=crop&w=1200&q=80'},
+  {id:'x2', name:'Agua fresca (1L)', desc:'Horchata, jamaica o tamarindo', price:35, category:'todos', image:'https://images.unsplash.com/photo-1505577058444-a3dab4b3f8b0?auto=format&fit=crop&w=1200&q=80'},
+  {id:'x3', name:'Flan casero', desc:'Postre tradicional', price:45, category:'todos', image:'https://images.unsplash.com/photo-1604152135912-04a2c3a83a2d?auto=format&fit=crop&w=1200&q=80'}
+];
+
+/* ============================
+   Estado: carrito
+   cart = { productId: qty, ... }
+   ============================ */
+let cart = {};
+
+/* ===== util ===== */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from((root || document).querySelectorAll(sel));
+function money(n){ return '$' + Number(n).toFixed(0); }
+
+/* ===== render productos ===== */
+const grid = $('#product-grid');
+function renderProducts(filter='todos'){
+  grid.innerHTML = '';
+  const list = PRODUCTS.filter(p => filter==='todos' ? true : (p.category === filter));
+  for(const p of list){
+    const div = document.createElement('div');
+    div.className = 'product';
+    div.innerHTML = `
+      <img src="${p.image}" alt="${p.name}" loading="lazy" data-id="${p.id}">
+      <div class="prod-info">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+      </div>
+      <div class="prod-actions" aria-hidden="false">
+        <div class="price">${money(p.price)}</div>
+        <button class="add-btn" data-id="${p.id}">Añadir</button>
+      </div>
+    `;
+    grid.appendChild(div);
+  }
+  // add listeners for images and buttons
+  $$('.product img').forEach(img => img.addEventListener('click', (e) => openImageModal(e.target.getAttribute('data-id'))));
+  $$('.add-btn').forEach(b => b.addEventListener('click', (e) => { addToCart(e.target.dataset.id, 1); }));
+}
+
+/* ===== gallery render ===== */
+function renderGallery(){
+  const gallery = $('#gallery');
+  gallery.innerHTML = '';
+  const items = PRODUCTS.slice(0,9);
+  for(const p of items){
+    const img = document.createElement('img');
+    img.src = p.image;
+    img.alt = p.name;
+    img.loading = 'lazy';
+    img.addEventListener('click', () => openImageModal(p.id));
+    gallery.appendChild(img);
+  }
+}
+
+/* ===== cart UI ===== */
+const cartList = $('#cart-list');
+const subtotalEl = $('#subtotal');
+const ivaEl = $('#iva');
+const totalEl = $('#total');
+const chkSubtotal = $('#chk-subtotal');
+const chkIva = $('#chk-iva');
+const chkTotal = $('#chk-total');
+
+function loadCart(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ cart = JSON.parse(raw); } else cart = {};
+  }catch(e){ cart = {} }
+  refreshCart();
+}
+
+function saveCart(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); }
+
+function refreshCart(){
+  cartList.innerHTML = '';
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    cartList.innerHTML = '<div class="empty">No hay productos. Agrega algo delicioso 🍽️</div>';
+    document.getElementById('cart-totals').hidden = true;
+    return;
+  }
+  document.getElementById('cart-totals').hidden = false;
+  let subtotal = 0;
+  for(const id of ids){
+    const qty = cart[id];
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p) continue;
+    const line = p.price * qty;
+    subtotal += line;
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <img src="${p.image}" alt="${p.name}">
+      <div class="meta">
+        <b>${p.name}</b>
+        <div class="small">${p.desc}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:800">${money(line)}</div>
+        <div style="margin-top:6px">
+          <span class="qty" data-id="${id}">
+            <button class="dec">−</button>
+            <span class="qty-num">${qty}</span>
+            <button class="inc">+</button>
+          </span>
+          <div style="margin-top:6px">
+            <button class="btn btn-clear small remove" data-id="${id}">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    `;
+    cartList.appendChild(el);
+  }
+  const iva = 0; // si quieres IVA cambia aquí
+  const total = subtotal + Math.round(subtotal * (iva/100));
+  subtotalEl.textContent = money(subtotal);
+  ivaEl.textContent = money(Math.round(subtotal*(iva/100)));
+  totalEl.textContent = money(total);
+
+  chkSubtotal.textContent = money(subtotal);
+  chkIva.textContent = money(Math.round(subtotal*(iva/100)));
+  chkTotal.textContent = money(total);
+
+  // event handlers for qty +/-
+  $$('.inc').forEach(btn => btn.onclick = (e) => {
+    const id = e.target.closest('.qty').dataset.id; addToCart(id,1);
+  });
+  $$('.dec').forEach(btn => btn.onclick = (e) => {
+    const id = e.target.closest('.qty').dataset.id; addToCart(id,-1);
+  });
+  $$('.remove').forEach(btn => btn.onclick = (e) => {
+    const id = e.target.dataset.id; delete cart[id]; saveCart(); refreshCart();
+  });
+
+  saveCart();
+}
+
+/* ===== cart manipulation ===== */
+function addToCart(id, delta = 1){
+  const current = cart[id] || 0;
+  const next = current + delta;
+  if(next <= 0) delete cart[id]; else cart[id] = next;
+  refreshCart();
+  flashCartNote();
+}
+
+function clearCart(){
+  if(!confirm('¿Vaciar el carrito?')) return;
+  cart = {}; saveCart(); refreshCart();
+}
+
+/* ===== checkout modal ===== */
+const modal = $('#modal-checkout');
+function openCheckout(){
+  populateCheckout();
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+}
+function closeCheckout(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+
+function populateCheckout(){
+  const wrap = $('#checkout-items'); wrap.innerHTML = '';
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    wrap.innerHTML = '<div class="small">No hay productos en el pedido.</div>';
+  } else {
+    let subtotal=0;
+    for(const id of ids){
+      const qty = cart[id];
+      const p = PRODUCTS.find(x => x.id === id);
+      if(!p) continue;
+      const line = p.price * qty; subtotal += line;
+      const item = document.createElement('div');
+      item.style.display='flex'; item.style.justifyContent='space-between'; item.style.padding='.4rem 0';
+      item.innerHTML = `<div><b>${qty} × ${p.name}</b><div class="small">${p.desc}</div></div><div style="font-weight:800">${money(line)}</div>`;
+      wrap.appendChild(item);
+    }
+    const iva = 0; const total = subtotal + Math.round(subtotal*(iva/100));
+    $('#chk-subtotal').textContent = money(subtotal);
+    $('#chk-iva').textContent = money(Math.round(subtotal*(iva/100)));
+    $('#chk-total').textContent = money(total);
+  }
+}
+
+/* ===== build whatsapp message & send ===== */
+function buildMessage(payload){
+  // payload: { items: [{id,name,price,qty}], subtotal, iva, total, name, phone, address, notes }
+  const lines = [];
+  lines.push(`*Pedido desde ${BUSINESS_NAME}*`);
+  lines.push('');
+  for(const it of payload.items){
+    lines.push(`${it.qty} x ${it.name} — $${it.price} = $${it.qty * it.price}`);
+  }
+  lines.push('');
+  lines.push(`Subtotal: $${payload.subtotal}`);
+  lines.push(`IVA: $${payload.iva}`);
+  lines.push(`Total: $${payload.total}`);
+  lines.push('');
+  lines.push(`Cliente: ${payload.name || ''}`);
+  lines.push(`Tel: ${payload.phone || ''}`);
+  if(payload.address) lines.push(`Dirección: ${payload.address}`);
+  if(payload.notes) { lines.push('Notas: ' + payload.notes); }
+  lines.push('');
+  lines.push('Por favor confirmar disponibilidad y horario de entrega o recogida.');
+  return lines.join('\n');
+}
+
+function submitOrder(e){
+  e.preventDefault();
+  // gather data
+  const name = $('#cust-name').value.trim();
+  const phone = $('#cust-phone').value.trim();
+  const address = $('#cust-address').value.trim();
+  const notes = $('#cust-notes').value.trim();
+
+  const ids = Object.keys(cart);
+  if(ids.length === 0){ alert('El carrito está vacío. Agrega productos antes de enviar.'); return; }
+  if(!name || !phone){ alert('Por favor completa tu nombre y teléfono.'); return; }
+
+  const items = [];
+  let subtotal = 0;
+  for(const id of ids){
+    const qty = cart[id];
+    const p = PRODUCTS.find(x => x.id === id);
+    if(!p) continue;
+    items.push({ id: p.id, name: p.name, price: p.price, qty });
+    subtotal += p.price * qty;
+  }
+  const iva = 0;
+  const total = subtotal + Math.round(subtotal*(iva/100));
+  const payload = { items, subtotal, iva, total, name, phone, address, notes };
+
+  const text = buildMessage(payload);
+  const encoded = encodeURIComponent(text);
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+
+  // open WhatsApp
+  window.open(waLink, '_blank');
+
+  // Optional: save as "last order" or clear cart
+  // clearCart();
+  localStorage.setItem('last_order', JSON.stringify({payload, created: new Date().toISOString()}));
+  alert('Se abrirá WhatsApp para enviar el pedido. Revisa el mensaje y confirma el envío.');
+  closeCheckout();
+}
+
+/* ===== contact form sends to WhatsApp ===== */
+function submitContact(e){
+  e.preventDefault();
+  const name = $('#contact-name').value.trim();
+  const phone = $('#contact-phone').value.trim();
+  const msg = $('#contact-msg').value.trim();
+  if(!name || !phone || !msg){ alert('Completa todos los campos.'); return; }
+  const lines = [];
+  lines.push(`*Mensaje desde sitio web - ${BUSINESS_NAME}*`);
+  lines.push('');
+  lines.push(`Nombre: ${name}`);
+  lines.push(`Tel: ${phone}`);
+  lines.push('');
+  lines.push('Mensaje:');
+  lines.push(msg);
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  window.open(url, '_blank');
+  alert('Se abrirá WhatsApp para enviar tu mensaje.');
+  $('#contact-form').reset();
+}
+function clearContact(){ $('#contact-form').reset(); }
+
+/* ===== image modal ===== */
+function openImageModal(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  $('#img-modal-img').src = p.image;
+  $('#img-modal-title').textContent = p.name;
+  $('#img-modal-desc').textContent = p.desc;
+  $('#img-modal').classList.add('open'); $('#img-modal').setAttribute('aria-hidden','false');
+}
+function closeImgModal(){ $('#img-modal').classList.remove('open'); $('#img-modal').setAttribute('aria-hidden','true'); }
+
+/* ===== helpers UI ===== */
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function flashCartNote(){
+  const n = $('#cart-note'); n.style.opacity = 0.4; setTimeout(()=> n.style.opacity=1,180);
+}
+
+/* ===== tabs filter ===== */
+$$('.tab').forEach(t => t.addEventListener('click', () => {
+  $$('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  renderProducts(t.dataset.cat);
+}));
+
+/* ===== init ===== */
+renderProducts('todos');
+renderGallery();
+loadCart();
+
+// update whatsapp top button to open cart message quickly (without checkout)
+function updateTopWhatsapp(){
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    $('#whatsapp-top').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, quiero hacer un pedido de ' + BUSINESS_NAME)}`;
+    $('#hero-whatsapp').href = $('#whatsapp-top').href;
+  } else {
+    let subtotal=0; const lines=[];
+    for(const id of ids){
+      const qty = cart[id]; const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) continue; subtotal += p.price * qty; lines.push(`${qty} x ${p.name} — $${p.price} = $${qty*p.price}`);
+    }
+    lines.push('');
+    lines.push(`Total: $${subtotal}`);
+    const txt = lines.join('\n');
+    $('#whatsapp-top').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(txt)}`;
+    $('#hero-whatsapp').href = $('#whatsapp-top').href;
+  }
+}
+// watch storage updates to update top whatsapp
+window.addEventListener('storage', loadCart);
+setInterval(updateTopWhatsapp, 800);
+updateTopWhatsapp();
+
+</script>
+</body>
+</html>
